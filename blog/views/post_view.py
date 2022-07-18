@@ -3,6 +3,7 @@ from blog.models import Post
 from django.shortcuts import get_object_or_404, render
 from blog.forms import CommentForm
 
+
 class PostView(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = "index.html"
@@ -38,3 +39,8 @@ def post_detail(request, slug):
 
         }
     )
+
+class PostDetail(generic.DetailView):
+    model = Post
+    template_name = "post_detail.html"
+

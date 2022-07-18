@@ -1,14 +1,12 @@
 from django.contrib import admin
 from .models import Post, Comment
 
-
 class PostAdmin(admin.ModelAdmin):
     list_display = ("tittle", "slug", "status", "created_on")
     list_filter = ("status",)
     search_fields = ["tittle", "content"]
     prepopulated_fields = {"slug": ("tittle",)}
-
-
+    
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ("name", "body", "post", "created_on", "active")
@@ -19,5 +17,5 @@ class CommentAdmin(admin.ModelAdmin):
     def approve_comments(self, request, queryset):
         queryset.update(active=True)
 
-        
+
 admin.site.register(Post, PostAdmin)

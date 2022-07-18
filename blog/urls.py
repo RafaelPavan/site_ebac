@@ -5,3 +5,4 @@ urlpatterns = [
     path('', views.PostView.as_view(), name='home'), # views do blog
     path("<slug:slug>/", views.post_detail, name='post_detail'),
 ]
+
